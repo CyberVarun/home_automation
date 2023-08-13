@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Automation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <script tyep="text/javascript" src="./js/auth.js"></script>
+</head>
+<body>
+<form id="authForm">
+    <div class="hero is-fullheight">
+        <div class="hero-body is-justify-content-center is-align-items-center">
+            <div class="columns is-flex is-flex-direction-column box">
+                <div class="column">
+                    <label for="email">Username</label>
+                    <input class="input is-primary" type="text" id="username" name="username" placeholder="Email address">
+                </div>
+                <div class="column">
+                    <label for="Name">Password</label>
+                    <input class="input is-primary" type="password" id="password" name="password" placeholder="Password">
+                </div>
+                <div class="column">
+                    <button class="button is-primary is-fullwidth" id="loginButton" type="submit">Login</button>
+                </div>
+		<p id="message"></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
