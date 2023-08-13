@@ -1,11 +1,11 @@
-const express = require('express');
-const app = express();
-const cors = require('cors');
-const Gpio = require('onoff').Gpio;
+const express = require('express'); // Import express
+const app = express(); // Instantiate express
+const cors = require('cors'); // Import cors
+const Gpio = require('onoff').Gpio; // Import onoff library and instantiate GPIO
 
-app.use(express.static('public'));
-app.use(express.json()); 
-app.use(cors());
+app.use(express.static('public')); // Serve static files from public directory
+app.use(express.json()); // Add express.json middleware
+app.use(cors()); // Add cors middleware
 
 
 const ledPins = {
@@ -19,36 +19,36 @@ const validUser = {
     password: 'password',
 };
 
-app.post('/authenticate', (req, res) => {
-    const { username, password } = req.body;
+app.post('/authenticate', (req, res) => { // Handle POST request to /authenticate
+    const { username, password } = req.body; // Get username and password from request body
     
-    if (username === validUser.username && password === validUser.password) {
-        res.json({ success: true });
+    if (username === validUser.username && password === validUser.password) { // Check if username and password are correct
+        res.json({ success: true }); // Send success response
     } else {
-        res.json({ success: false });
+        res.json({ success: false }); // Send failure response
     }
 });
 
-app.get('/get-led-state/:led', (req, res) => {
-    const { led } = req.params;
+app.get('/get-led-state/:led', (req, res) => { // Handle GET request to /get-led-state/:led
+    const { led } = req.params; // Get led from request parameters
     try {
-        const ledState = ledPins[led].readSync() === 1;
-        res.json({ ledState });
+        const ledState = ledPins[led].readSync() === 1; // Read LED state
+        res.json({ ledState }); // Send LED state back as response
     } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ error: `Failed to read ${led} state` });
+        console.error('Error:', error); // Log error message to console
+        res.status(500).json({ error: `Failed to read ${led} state` }); // Send error response
     }
 });
 
-app.post('/toggle-led/:led', (req, res) => {
-    const { led } = req.params;
+app.post('/toggle-led/:led', (req, res) => { // Handle POST request to /toggle-led/:led
+    const { led } = req.params; // Get led from request parameters
     try {
-        const currentValue = ledPins[led].readSync();
+        const currentValue = ledPins[led].readSync(); // Read LED state
         ledPins[led].writeSync(currentValue === 0 ? 1 : 0); // Toggle LED state
-        res.json({ success: true });
+        res.json({ success: true }); // Send success response
     } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ error: `Failed to toggle ${led}` });
+        console.error('Error:', error); // Log error message to console
+        res.status(500).json({ error: `Failed to toggle ${led}` }); // Send error response
     }
 });
 
@@ -58,7 +58,7 @@ process.on('SIGINT', () => {
     process.exit();    // Exit the process
 });
 
-const PORT = 3000;
-app.listen(PORT, () => {
-   console.log(`Server is running on port ${PORT}`);
+const PORT = 3000; // Port number
+app.listen(PORT, () => { // Start server on port 3000
+   console.log(`Server is running on port ${PORT}`); // Log message to console
 });
