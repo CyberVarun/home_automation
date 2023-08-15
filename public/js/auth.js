@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = formData.get("password"); // Get password from form
 
     try {
-      const response = await fetch("http://192.168.1.2:3000/authenticate", {
+      const response = await fetch("/authenticate", {
         // Send POST request to /authenticate
         method: "POST", // Use POST method
         headers: {
