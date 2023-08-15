@@ -25,7 +25,3 @@ Control LEDs on a Raspberry Pi using Node.js and the `onoff` library. This proje
 ## Contributing
 
 Contributions are welcome! Feel free to submit pull requests or report issues.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
