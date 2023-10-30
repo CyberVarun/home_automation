@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,28 +8,71 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="./css/button.css">
 </head>
-<body>
-    <form>
-        <div class="hero is-fullheight">
-            <div class="hero-body is-justify-content-center is-align-items-center">
-                <div class="m-3">
-                    <label class="mr-2">LED 1</label>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span id="toggleSpan1" class="slider round"></span>
-                    </label>
-                </div>
-                <div>
-                    <label class="mr-2">LED 2</label>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span id="toggleSpan2" class="slider round"></span>
-                    </label>
-                </div>
-            </div>
-        </div>
-    </form>
-<script src="./js/led.js"></script>
-</body>
-</html>
 
+<body>
+    <div class="hero is-fullheight-with-navbar">
+        <!-- the DIV that will contain the widget -->
+        <div class="weatherWidget"></div>
+        <div class="hero-body is-justify-content-center">
+            <!-- LED form -->
+            <form>
+                <div class="columns is-vcentered">
+                    <div class="column">
+                        <label>Hall</label>
+                    </div>
+                    <div class="column">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span id="toggleSpan1" class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="columns is-vcentered">
+                    <div class="column">
+                        <label >Kitchen</label>
+                    </div>
+                    <div class="column">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span id="toggleSpan2" class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="columns is-vcentered">
+                    <div class="column">
+                        <label>Bed Room</label>
+                    </div>
+                    <div class="column">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span id="toggleSpan3" class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="./js/led.js"></script>
+    <script>
+        window.weatherWidgetConfig = window.weatherWidgetConfig || [];
+        window.weatherWidgetConfig.push({
+            selector: ".weatherWidget",
+            apiKey: "", //Sign up for your personal key
+            location: "PUNE, IN",
+            unitGroup: "metric",
+            forecastDays: 6, //how many days forecast to show
+            title: "PUNE, IN", //optional title to show in the 
+            showTitle: true,
+            showConditions: true
+        });
+
+        (function () {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://www.visualcrossing.com/widgets/forecast-simple/weather-forecast-widget-simple.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+</body>
+
+</html>

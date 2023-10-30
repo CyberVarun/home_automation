@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (data.success) {
         // Check if authentication was successful
         message.textContent = "Authentication successful!"; // Set message text
-        window.location.href = "http://192.168.1.2:3000/led.html"; // Redirect to led.html
+        window.location.href = "http://192.168.1.7:3000/led.html"; // Redirect to led.html
       } else {
         message.textContent = "Authentication failed. Please try again."; // Set message text
       }

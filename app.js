@@ -11,6 +11,7 @@ app.use(cors()); // Add cors middleware
 const ledPins = {
     led1: new Gpio(17, 'out'), // Initialize LED 1 pin
     led2: new Gpio(18, 'out'), // Initialize LED 2 pin
+    led3: new Gpio(27, 'out'), // Initialize LED 3 pin
 };
 
 // Simulated user credentials for authentication

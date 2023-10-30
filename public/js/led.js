@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const toggleSpan1 = document.getElementById("toggleSpan1"); // Get toggleSpan1 element
   const toggleSpan2 = document.getElementById("toggleSpan2");
-
+  const toggleSpan3 = document.getElementById("toggleSpan3");
+  
   const fetchLedState = async (led) => {
     // Define function to fetch LED state
     try {
@@ -43,8 +44,18 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.error("Error toggling led2:", error);
     }
   });
+  
+  toggleSpan3.addEventListener("click", async () => {
+    try {
+      await fetch("/toggle-led/led3", { method: "POST" });
+      await updateButtonState(toggleSpan3, "led3");
+    } catch (error) {
+      console.error("Error toggling led3:", error);
+    }
+  });
 
   // Initial button state
   await updateButtonState(toggleSpan1, "led1"); // Update button state
   await updateButtonState(toggleSpan2, "led2");
+  await updateButtonState(toggleSpan2, "led3");
 });
